@@ -5,13 +5,13 @@ Investigación técnica de un ataque de denegación de servicio (**DoS**) de tip
 
 ## 🛠️ Herramientas y Datos
 * **Dataset:** Logs de tráfico TCP/HTTP exportados de Wireshark.
-* **Metodología:** NIST CSF e investigación basada en las "5 W".
+* **Metodología:** NIST CSF e investigación basada en las "5 W" (Who, What, When, Where, Why).
 * **Análisis Visual:** Identificación de patrones de inundación SYN y agotamiento de recursos.
 
 ## 🚀 Análisis de Evidencia
 
 ### 1. Tráfico Crudo (Dataset)
-El análisis se basó en el registro completo de tráfico de red:
+El análisis se basó en el registro completo de tráfico de red exportado desde Wireshark:
 * **[📄 Descargar Logs de Wireshark (CSV)](./Network_Traffic_Logs.csv)**
 
 ### 2. Evidencia Visual del Ataque
@@ -26,7 +26,7 @@ Como consecuencia del ataque, las solicitudes legítimas comenzaron a fallar por
 ![Captura de Logs - Timeout](./Evidencia_timeout.PNG)
 
 ## 📊 Entregables
-* **[📄 Informe Final de Análisis de Incidente](./Analisis_Incidente_SYN_Flood.pdf)**
+* **[📄 Informe Final de Análisis de Incidente (PDF)](./Analisis_Incidente_SYN_Flood.pdf)**
 
 ---
-*Proyecto realizado como parte del Certificado de Ciberseguridad de Google.*
+*Este proyecto es parte del Certificado Profesional de Ciberseguridad de Google, demostrando competencias en análisis de tráfico de red, respuesta ante incidentes y seguridad defensiva.*
