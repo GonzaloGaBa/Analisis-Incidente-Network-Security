@@ -19,11 +19,11 @@ Durante la investigación, se identificaron dos puntos críticos:
 
 **A. Inundación de paquetes SYN:**
 Se observa un volumen masivo de solicitudes SYN desde una IP externa que no completa el handshake, diseñado para saturar las conexiones del servidor.
-![Captura de Logs - Key Evidence](./Evidencia_key.png)
+![Captura de Logs - Key Evidence](./Evidencia_key.PNG)
 
 **B. Impacto en el Servicio (Timeout):**
 Como consecuencia del ataque, las solicitudes legítimas comenzaron a fallar por agotamiento de recursos (Timeout).
-![Captura de Logs - Timeout](./Evidencia_timeout.png)
+![Captura de Logs - Timeout](./Evidencia_timeout.PNG)
 
 ## 📊 Entregables
 * **[📄 Informe Final de Análisis de Incidente](./Analisis_Incidente_SYN_Flood.pdf)**
