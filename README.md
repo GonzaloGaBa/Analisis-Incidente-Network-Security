@@ -1,26 +1,32 @@
-# Informe de Incidente: Mitigación de Ataque DoS (SYN Flood)
+# Análisis de Incidente: Network Security (SYN Flood Attack) 🛡️🌐
 
-## 1. Resumen Ejecutivo
-Este proyecto documenta el análisis y la respuesta ante una interrupción de servicio en un servidor web corporativo. A través del análisis de logs de tráfico (Wireshark), se identificó un ataque de denegación de servicio (DoS) que saturó los recursos del sistema, impidiendo el acceso a usuarios legítimos.
+## 📝 Escenario del Proyecto
+Investigación técnica de un ataque de denegación de servicio (**DoS**) de tipo **SYN Flood**. El objetivo fue analizar el tráfico de red, identificar el origen del ataque y documentar el impacto utilizando marcos de trabajo estándar de la industria.
 
-## 2. Detalles del Incidente
-* **Activo Afectado:** Servidor Web (IP: 192.0.2.1)
-* **Vector de Ataque:** Inundación SYN (SYN Flood)
-* **Origen del Ataque:** IP Maliciosa 203.0.113.0
-* **Impacto:** Error 504 Gateway Timeout y paquetes [RST, ACK] para tráfico legítimo (empleados en el rango 198.51.100.0/24).
+## 🛠️ Herramientas y Datos
+* **Dataset:** Logs de tráfico TCP/HTTP exportados de Wireshark.
+* **Metodología:** NIST CSF e investigación basada en las "5 W".
+* **Análisis Visual:** Identificación de patrones de inundación SYN y agotamiento de recursos.
 
-## 3. Análisis Técnico (Protocolo TCP)
-El ataque aprovechó la vulnerabilidad en el "Three-way Handshake" de TCP:
-1. El atacante envió múltiples paquetes **[SYN]** a una velocidad de varios por segundo.
-2. El servidor reservó recursos para cada conexión, pero al no recibir los paquetes **[ACK]** finales, agotó su capacidad.
-3. **Resultado:** El servidor dejó de responder a solicitudes legítimas a partir de la entrada de log #125.
+## 🚀 Análisis de Evidencia
 
-## 4. Medidas de Mitigación Propuestas
-Basado en el marco **NIST**, se recomiendan las siguientes acciones:
-* **Detección:** Configurar alertas en el IDS (Suricata) para picos inusuales de paquetes SYN.
-* **Contención:** Implementar "SYN Cookies" en el servidor para evitar la reserva prematura de memoria.
-* **Prevención:** Configurar reglas de Firewall para limitar el ritmo (Rate Limiting) de solicitudes desde una misma IP de origen.
+### 1. Tráfico Crudo (Dataset)
+El análisis se basó en el registro completo de tráfico de red:
+* **[📄 Descargar Logs de Wireshark (CSV)](./Network_Traffic_Logs.csv)**
 
-## 5. Herramientas Utilizadas
-* **Wireshark** (Análisis de capturas de red).
-* **Metodología NIST** para reporte de incidentes.
+### 2. Evidencia Visual del Ataque
+Durante la investigación, se identificaron dos puntos críticos:
+
+**A. Inundación de paquetes SYN:**
+Se observa un volumen masivo de solicitudes SYN desde una IP externa que no completa el handshake, diseñado para saturar las conexiones del servidor.
+![Captura de Logs - Key Evidence](./Evidencia_key.png)
+
+**B. Impacto en el Servicio (Timeout):**
+Como consecuencia del ataque, las solicitudes legítimas comenzaron a fallar por agotamiento de recursos (Timeout).
+![Captura de Logs - Timeout](./Evidencia_timeout.png)
+
+## 📊 Entregables
+* **[📄 Informe Final de Análisis de Incidente](./Analisis_Incidente_SYN_Flood.pdf)**
+
+---
+*Proyecto realizado como parte del Certificado de Ciberseguridad de Google.*
